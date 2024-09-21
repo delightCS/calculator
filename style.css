@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply p-6 rounded-lg text-xl text-white font-bold;
+}
