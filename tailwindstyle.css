@@ -697,7 +697,10 @@ video {
   font-weight: 600;
 }
 
-.btn {
+.btn,
+.equalto-btn,
+.delete-btn,
+.clear-btn {
   border-radius: 0.5rem;
   padding: 1.5rem;
   font-size: 1.25rem;
