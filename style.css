@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 .btn,
-.equalto-btn,
-.delete-btn,
-.clear-btn {
+.operator-btn {
   @apply p-6 rounded-lg text-xl text-white font-bold;
 }

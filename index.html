@@ -11,32 +11,46 @@
     <div class="container text-center mx-auto">
       <div class="text-center mt-20 w-[490px] p-8 mx-auto bg-black rounded-3xl">
         <div
-          id="calc-screen"
-          class="bg-gray-400 py-2 px-2 h-16 rounded-lg text-5xl text-right font-semibold"
+          id=""
+          class="calc-screen bg-gray-400 py-2 px-2 h-16 rounded-lg text-5xl text-right font-semibold"
         >
           0
         </div>
         <div class="calc-btns grid grid-cols-4 mt-8 bg-black gap-2">
-          <button class="clear-btn col-start-1 col-span-2 bg-red-500">
+          <button
+            data-action="clear"
+            class="btn col-start-1 col-span-2 bg-red-500"
+          >
             AC
           </button>
-          <button class="delete-btn bg-red-500">&larr;</button>
-          <button class="btn bg-yellow-500">/</button>
+          <button data-action="delete" class="btn bg-red-500">&larr;</button>
+          <button data-action="divide" class="operator-btn bg-yellow-500">
+            &divide;
+          </button>
           <button class="btn bg-orange-400">7</button>
           <button class="btn bg-orange-400">8</button>
           <button class="btn bg-orange-400">9</button>
-          <button class="btn bg-yellow-500">*</button>
+          <button data-action="multiply" class="operator-btn bg-yellow-500">
+            &times;
+          </button>
           <button class="btn bg-orange-400">4</button>
           <button class="btn bg-orange-400">5</button>
           <button class="btn bg-orange-400">6</button>
-          <button class="btn bg-yellow-500">-</button>
+          <button data-action="subtract" class="operator-btn bg-yellow-500">
+            -
+          </button>
           <button class="btn bg-orange-400">1</button>
           <button class="btn bg-orange-400">2</button>
           <button class="btn bg-orange-400">3</button>
-          <button class="btn bg-yellow-500">+</button>
+          <button data-action="add" class="operator-btn bg-yellow-500">
+            +
+          </button>
           <button class="btn bg-orange-400">0</button>
           <button class="btn bg-orange-400">.</button>
-          <button class="equalto-btn col-start-3 col-span-2 bg-yellow-500">
+          <button
+            data-action="calculate"
+            class="btn col-start-3 col-span-2 bg-yellow-500"
+          >
             =
           </button>
         </div>

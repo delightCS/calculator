@@ -39,12 +39,54 @@ function operate(numA, numB, operation) {
   return numA;
 }
 
-const buttons = document.querySelectorAll(".btn");
+// const buttons = document.querySelectorAll(".btn");
 
-buttons.forEach((button) => {
-  button.addEventListener("click", function () {
-    numA += this.textContent;
+// buttons.forEach((button) => {
+//   button.addEventListener("click", function () {
+//     numA += this.textContent;
 
-    document.querySelector("#calc-screen").textContent = numA;
-  });
+//     document.querySelector("#calc-screen").textContent = numA;
+//   });
+// });
+
+const calculator = document.querySelector(".container");
+const display = document.querySelector(".calc-screen");
+const keys = document.querySelector(".calc-btns");
+
+keys.addEventListener("click", (e) => {
+  if (e.target.matches("button")) {
+    const key = e.target;
+    const action = key.dataset.action;
+    const keyContent = key.textContent;
+    const displayedNum = display.textContent;
+
+    if (!action) {
+      if (displayedNum == 0) {
+        display.textContent = keyContent;
+      } else {
+        display.textContent = displayedNum + keyContent;
+      }
+    }
+
+    if (
+      action === "add" ||
+      action === "subtract" ||
+      action === "multiply" ||
+      action === "divide"
+    ) {
+      console.log("operator key");
+    }
+
+    if (action === "calculate") {
+      console.log("calculate key");
+    }
+
+    if (action === "delete") {
+      console.log("delete key");
+    }
+
+    if (action === "clear") {
+      console.log("clear key");
+    }
+  }
 });

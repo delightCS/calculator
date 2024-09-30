@@ -698,9 +698,7 @@ video {
 }
 
 .btn,
-.equalto-btn,
-.delete-btn,
-.clear-btn {
+.operator-btn {
   border-radius: 0.5rem;
   padding: 1.5rem;
   font-size: 1.25rem;
