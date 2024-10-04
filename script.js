@@ -49,64 +49,79 @@ function operate(a, op, b) {
   return Math.round(res * 10000000) / 10000000;
 }
 
-buttons.addEventListener("click", (e) => {
-  let target = e.target;
+buttons.addEventListener("click", (e) => handleInput(e.target.id));
 
-  if (target.tagName === "BUTTON") {
-    if (!isNaN(target.id)) {
-      if (display.textContent === "0" || shouldCalculate) {
-        display.textContent = target.id;
-        shouldCalculate = false;
-      } else {
-        display.textContent += target.id;
-      }
+document.addEventListener("keydown", (e) => {
+  const key = e.key;
 
-      if (op !== "") {
-        b = display.textContent;
-      }
+  if (!isNaN(key) || key === ".") {
+    handleInput(key);
+  } else if (["+", "-", "*", "/"].includes(key)) {
+    handleInput(key);
+  } else if (key === "Enter" || key === "=") {
+    handleInput("=");
+  } else if (key === "Backspace") {
+    handleInput("delete");
+  } else if (key === "Escape") {
+    handleInput("AC");
+  }
+});
+
+function handleInput(input) {
+  if (!isNaN(input)) {
+    if (display.textContent === "0" || shouldCalculate) {
+      display.textContent.length <= 12;
+      display.textContent = input;
+      shouldCalculate = false;
+    } else {
+      display.textContent += input;
     }
 
-    if (["+", "-", "*", "/"].includes(target.id)) {
-      if (a !== null && op !== "" && b !== null) {
-        const result = operate(parseFloat(a), op, parseFloat(b));
-        display.textContent = result;
-
-        a = result;
-        b = null;
-      } else {
-        a = display.textContent;
-      }
-      op = target.id;
-      shouldCalculate = true;
+    if (op !== "") {
+      b = display.textContent;
     }
+  }
 
-    if (target.id === "=") {
-      if (a !== null && op !== "" && b !== null) {
-        const result = operate(parseFloat(a), op, parseFloat(b));
-        display.textContent = result;
+  if (["+", "-", "*", "/"].includes(input)) {
+    if (a !== null && op !== "" && b !== null) {
+      const result = operate(parseFloat(a), op, parseFloat(b));
+      display.textContent = result;
 
-        a = result;
-        b = null;
-        op = "";
-      }
+      a = result;
+      b = null;
+    } else {
+      a = display.textContent;
     }
+    op = input;
+    shouldCalculate = true;
+  }
 
-    if (target.id === "delete") {
-      if (display.textContent.length > 1) {
-        display.textContent = display.textContent.slice(0, -1);
-      } else {
-        display.textContent = "0";
-      }
-    }
+  if (input === "=") {
+    if (a !== null && op !== "" && b !== null) {
+      const result = operate(parseFloat(a), op, parseFloat(b));
+      display.textContent = result;
 
-    if (target.id === "AC") {
-      a = null;
+      a = result;
       b = null;
       op = "";
+    }
+  }
+
+  if (input === "delete") {
+    if (display.textContent.length > 1) {
+      display.textContent = display.textContent.slice(0, -1);
+    } else {
       display.textContent = "0";
     }
   }
-});
+
+  if (input === "AC") {
+    a = null;
+    b = null;
+    op = "";
+    display.textContent = "0";
+  }
+}
 
 decimal.addEventListener("click", (e) => {
   let target = e.target;
