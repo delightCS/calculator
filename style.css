@@ -4,5 +4,5 @@
 
 .btn,
 .decimal-btn {
-  @apply p-6 rounded-lg text-xl text-white font-bold;
+  @apply p-6 rounded-sm text-xl text-white font-bold;
 }

@@ -54,7 +54,7 @@ buttons.addEventListener("click", (e) => {
 
   if (target.tagName === "BUTTON") {
     if (!isNaN(target.id)) {
-      if (display.textContent == 0 || shouldCalculate) {
+      if (display.textContent === "0" || shouldCalculate) {
         display.textContent = target.id;
         shouldCalculate = false;
       } else {
@@ -91,7 +91,12 @@ buttons.addEventListener("click", (e) => {
       }
     }
 
-    if (target === "delete") {
+    if (target.id === "delete") {
+      if (display.textContent.length > 1) {
+        display.textContent = display.textContent.slice(0, -1);
+      } else {
+        display.textContent = "0";
+      }
     }
 
     if (target.id === "AC") {
