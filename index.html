@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>demo-calculator</title>
+    <title>Calculator</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="tailwindstyle.css" />
   </head>
@@ -12,45 +12,31 @@
       <div class="text-center mt-20 w-[490px] p-8 mx-auto bg-black rounded-3xl">
         <div
           id=""
-          class="calc-screen bg-gray-400 py-2 px-2 h-16 rounded-lg text-5xl text-right font-semibold"
+          class="calc-screen bg-gray-400 py-2 px-2 h-16 mr-4 rounded-lg text-5xl text-right font-semibold"
         >
           0
         </div>
         <div class="calc-btns grid grid-cols-4 mt-8 bg-black gap-2">
-          <button
-            data-action="clear"
-            class="btn col-start-1 col-span-2 bg-red-500"
-          >
+          <button id="AC" class="btn col-start-1 col-span-2 bg-red-500">
             AC
           </button>
-          <button data-action="delete" class="btn bg-red-500">&larr;</button>
-          <button data-action="divide" class="operator-btn bg-yellow-500">
-            &divide;
-          </button>
-          <button class="btn bg-orange-400">7</button>
-          <button class="btn bg-orange-400">8</button>
-          <button class="btn bg-orange-400">9</button>
-          <button data-action="multiply" class="operator-btn bg-yellow-500">
-            &times;
-          </button>
-          <button class="btn bg-orange-400">4</button>
-          <button class="btn bg-orange-400">5</button>
-          <button class="btn bg-orange-400">6</button>
-          <button data-action="subtract" class="operator-btn bg-yellow-500">
-            -
-          </button>
-          <button class="btn bg-orange-400">1</button>
-          <button class="btn bg-orange-400">2</button>
-          <button class="btn bg-orange-400">3</button>
-          <button data-action="add" class="operator-btn bg-yellow-500">
-            +
-          </button>
-          <button class="btn bg-orange-400">0</button>
-          <button class="btn bg-orange-400">.</button>
-          <button
-            data-action="calculate"
-            class="btn col-start-3 col-span-2 bg-yellow-500"
-          >
+          <button class="btn bg-red-500">&larr;</button>
+          <button id="/" class="btn bg-yellow-500">&divide;</button>
+          <button id="7" class="btn bg-orange-400">7</button>
+          <button id="8" class="btn bg-orange-400">8</button>
+          <button id="9" class="btn bg-orange-400">9</button>
+          <button id="*" class="btn bg-yellow-500">&times;</button>
+          <button id="4" class="btn bg-orange-400">4</button>
+          <button id="5" class="btn bg-orange-400">5</button>
+          <button id="6" class="btn bg-orange-400">6</button>
+          <button id="-" class="btn bg-yellow-500">-</button>
+          <button id="1" class="btn bg-orange-400">1</button>
+          <button id="2" class="btn bg-orange-400">2</button>
+          <button id="3" class="btn bg-orange-400">3</button>
+          <button id="+" class="btn bg-yellow-500">+</button>
+          <button id="0" class="btn bg-orange-400">0</button>
+          <button class="decimal-btn bg-orange-400">.</button>
+          <button id="=" class="btn col-start-3 col-span-2 bg-yellow-500">
             =
           </button>
         </div>

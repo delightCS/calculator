@@ -1,92 +1,91 @@
-const add = function (numA, numB) {
-  return numA + numB;
+const display = document.querySelector(".calc-screen");
+const decimal = document.querySelector(".decimal-btn");
+const buttons = document.querySelector(".calc-btns");
+
+const add = function (a, b) {
+  return a + b;
 };
 
-const subtract = function (numA, numB) {
-  return numA - numB;
+const subtract = function (a, b) {
+  return a - b;
 };
 
-const multiply = function (numA, numB) {
-  return numA * numB;
+const multiply = function (a, b) {
+  return a * b;
 };
 
-const divide = function (numA, numB) {
-  return numA / numB;
+const divide = function (a, b) {
+  return a / b;
 };
 
-let numA = "";
-let numB = "";
-let operation;
+let op = "";
+let a = null;
+let b = null;
 
-function operate(numA, numB, operation) {
-  let result;
-  switch (operation) {
+function operate(a, op, b) {
+  let res;
+  switch (op) {
     case "+":
-      numA = add(numA, numB);
+      res = add(a, b);
       break;
+
     case "-":
-      numA = subtract(numA, numB);
+      res = subtract(a, b);
       break;
+
     case "*":
-      numA = multiply(numA, numB);
+      res = multiply(a, b);
       break;
+
     case "/":
-      numA = divide(numA, numB);
+      if (b == 0) {
+        return "ERROR";
+      } else {
+        res = divide(a, b);
+      }
       break;
-    default:
-      numA = "ERROR";
   }
-  return numA;
+  return Math.round(res * 1000000) / 1000000;
 }
 
-// const buttons = document.querySelectorAll(".btn");
+buttons.addEventListener("click", (e) => {
+  let target = e.target;
 
-// buttons.forEach((button) => {
-//   button.addEventListener("click", function () {
-//     numA += this.textContent;
-
-//     document.querySelector("#calc-screen").textContent = numA;
-//   });
-// });
-
-const calculator = document.querySelector(".container");
-const display = document.querySelector(".calc-screen");
-const keys = document.querySelector(".calc-btns");
-
-keys.addEventListener("click", (e) => {
-  if (e.target.matches("button")) {
-    const key = e.target;
-    const action = key.dataset.action;
-    const keyContent = key.textContent;
-    const displayedNum = display.textContent;
-
-    if (!action) {
-      if (displayedNum == 0) {
-        display.textContent = keyContent;
+  if (target.tagName === "BUTTON") {
+    if (!isNaN(target.id)) {
+      if (display.textContent == 0) {
+        display.textContent = target.id;
       } else {
-        display.textContent = displayedNum + keyContent;
+        display.textContent += target.id;
+      }
+
+      if (op !== "") {
+        b = display.textContent;
       }
     }
 
-    if (
-      action === "add" ||
-      action === "subtract" ||
-      action === "multiply" ||
-      action === "divide"
-    ) {
-      console.log("operator key");
+    if (["+", "-", "*", "/"].includes(target.id)) {
+      a = display.textContent;
+      op = target.id;
+      display.textContent = "0";
     }
 
-    if (action === "calculate") {
-      console.log("calculate key");
-    }
+    if (target.id === "=") {
+      if (a !== null && op !== "" && b !== null) {
+        const result = operate(parseFloat(a), op, parseFloat(b));
+        display.textContent = result;
 
-    if (action === "delete") {
-      console.log("delete key");
+        a = result;
+        b = null;
+        op = "";
+      }
     }
+  }
+});
 
-    if (action === "clear") {
-      console.log("clear key");
-    }
+decimal.addEventListener("click", (e) => {
+  let target = e.target;
+  if (!display.textContent.includes(".")) {
+    display.textContent += ".";
   }
 });

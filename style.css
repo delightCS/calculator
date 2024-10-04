@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 .btn,
-.operator-btn {
+.decimal-btn {
   @apply p-6 rounded-lg text-xl text-white font-bold;
 }

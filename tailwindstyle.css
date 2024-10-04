@@ -698,6 +698,10 @@ video {
 }
 
 .btn,
+.calculate-btn,
+.clear-btn,
+.delete-btn,
+.decimal-btn,
 .operator-btn {
   border-radius: 0.5rem;
   padding: 1.5rem;
