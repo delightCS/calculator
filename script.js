@@ -45,7 +45,7 @@ function operate(a, op, b) {
       }
       break;
   }
-  return Math.round(res * 1000000) / 1000000;
+  return Math.round(res * 10000000) / 10000000;
 }
 
 buttons.addEventListener("click", (e) => {
@@ -79,6 +79,13 @@ buttons.addEventListener("click", (e) => {
         b = null;
         op = "";
       }
+    }
+
+    if (target.id === "AC") {
+      a = null;
+      b = null;
+      op = "";
+      display.textContent = "0";
     }
   }
 });
