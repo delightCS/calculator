@@ -21,6 +21,7 @@ const divide = function (a, b) {
 let op = "";
 let a = null;
 let b = null;
+let shouldCalculate = false;
 
 function operate(a, op, b) {
   let res;
@@ -53,8 +54,9 @@ buttons.addEventListener("click", (e) => {
 
   if (target.tagName === "BUTTON") {
     if (!isNaN(target.id)) {
-      if (display.textContent == 0) {
+      if (display.textContent == 0 || shouldCalculate) {
         display.textContent = target.id;
+        shouldCalculate = false;
       } else {
         display.textContent += target.id;
       }
@@ -65,9 +67,17 @@ buttons.addEventListener("click", (e) => {
     }
 
     if (["+", "-", "*", "/"].includes(target.id)) {
-      a = display.textContent;
+      if (a !== null && op !== "" && b !== null) {
+        const result = operate(parseFloat(a), op, parseFloat(b));
+        display.textContent = result;
+
+        a = result;
+        b = null;
+      } else {
+        a = display.textContent;
+      }
       op = target.id;
-      display.textContent = "0";
+      shouldCalculate = true;
     }
 
     if (target.id === "=") {
@@ -79,6 +89,9 @@ buttons.addEventListener("click", (e) => {
         b = null;
         op = "";
       }
+    }
+
+    if (target === "delete") {
     }
 
     if (target.id === "AC") {
