@@ -1,7 +1,7 @@
 const display = document.querySelector(".calc-screen");
 const decimal = document.querySelector(".decimal-btn");
 const buttons = document.querySelector(".calc-btns");
-
+const MAX_DISPLAY_LENGTH = 14;
 const add = function (a, b) {
   return a + b;
 };
@@ -18,11 +18,12 @@ const divide = function (a, b) {
   return a / b;
 };
 
-let op = "";
 let a = null;
 let b = null;
+let op = "";
 let shouldCalculate = false;
 
+// Handles the calculator arithmetic operations
 function operate(a, op, b) {
   let res;
   switch (op) {
@@ -49,8 +50,10 @@ function operate(a, op, b) {
   return Math.round(res * 10000000) / 10000000;
 }
 
+// Handles the click input
 buttons.addEventListener("click", (e) => handleInput(e.target.id));
 
+// Handles the keyboard input
 document.addEventListener("keydown", (e) => {
   const key = e.key;
 
@@ -67,10 +70,17 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// The calculator input function
 function handleInput(input) {
+  // Handles display length
+  if (
+    display.textContent.length >= MAX_DISPLAY_LENGTH &&
+    !["=", "AC", "delete"].includes(input)
+  ) {
+    return;
+  }
   if (!isNaN(input)) {
     if (display.textContent === "0" || shouldCalculate) {
-      display.textContent.length <= 12;
       display.textContent = input;
       shouldCalculate = false;
     } else {
@@ -82,6 +92,7 @@ function handleInput(input) {
     }
   }
 
+  // Selects an operator from the calculator operations
   if (["+", "-", "*", "/"].includes(input)) {
     if (a !== null && op !== "" && b !== null) {
       const result = operate(parseFloat(a), op, parseFloat(b));
@@ -96,6 +107,15 @@ function handleInput(input) {
     shouldCalculate = true;
   }
 
+  // Handles decimal
+  if (input === ".") {
+    if (!display.textContent.includes(".")) {
+      display.textContent += ".";
+      shouldCalculate = false;
+    }
+  }
+
+  // Handles calculate
   if (input === "=") {
     if (a !== null && op !== "" && b !== null) {
       const result = operate(parseFloat(a), op, parseFloat(b));
@@ -107,6 +127,7 @@ function handleInput(input) {
     }
   }
 
+  // Handles delete
   if (input === "delete") {
     if (display.textContent.length > 1) {
       display.textContent = display.textContent.slice(0, -1);
@@ -115,6 +136,7 @@ function handleInput(input) {
     }
   }
 
+  // Handles clear
   if (input === "AC") {
     a = null;
     b = null;
@@ -122,10 +144,3 @@ function handleInput(input) {
     display.textContent = "0";
   }
 }
-
-decimal.addEventListener("click", (e) => {
-  let target = e.target;
-  if (!display.textContent.includes(".")) {
-    display.textContent += ".";
-  }
-});
