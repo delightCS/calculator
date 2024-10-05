@@ -1,7 +1,7 @@
 const display = document.querySelector(".calc-screen");
-const decimal = document.querySelector(".decimal-btn");
 const buttons = document.querySelector(".calc-btns");
 const MAX_DISPLAY_LENGTH = 14;
+
 const add = function (a, b) {
   return a + b;
 };

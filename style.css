@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn,
-.decimal-btn {
+.btn {
   @apply p-6 rounded-sm text-xl text-white font-bold;
 }
